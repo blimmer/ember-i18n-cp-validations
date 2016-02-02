@@ -12,11 +12,13 @@ function unwrap(input) {
 }
 
 export default function() {
-  ValidatorsMessages.reopen({
+  ValidatorsMessages.reopenClass({
     i18n: Ember.inject.service(),
     prefix: 'errors',
-    _regex: /\{{(\w+)\}}/g,
+    _regex: /\{{(\w+)\}}/g
+  });
 
+  ValidatorsMessages.reopen({
     getDescriptionFor(attribute, context = {}) {
       const key = `${this.get('prefix')}.description`;
       const i18n = this.get('i18n');
